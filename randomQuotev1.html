@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get a random quote".</p>
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="quotePlaceholder"></p>
+<p id="authorPlaceholder"></p>
+
+<script>
+function myFunction() {
+  var quote = new XMLHttpRequest();
+  quote.open("GET", "https://random-quote-generator.herokuapp.com/api/quotes/random", false);
+  quote.send();
+
+  
+  var response = JSON.parse(quote.response);
+  var randomQuote = `"${response.quote}"`;
+  var randomQuoteAuthor = response.author;
+
+  /* console.log(randomQuote);
+  console.log(randomQuoteAuthor); */
+
+  document.getElementById("quotePlaceholder").innerHTML = randomQuote;
+  document.getElementById("authorPlaceholder").innerHTML = randomQuoteAuthor;
+}
+</script>
+
+</body>
+</html>
